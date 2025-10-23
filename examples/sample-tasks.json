@@ -1,0 +1,201 @@
+{
+  "tasks": [
+    {
+      "name": "Google Search Automation",
+      "description": "Search Google and extract top results",
+      "steps": [
+        {
+          "id": "1",
+          "action": "navigate",
+          "value": "https://www.google.com"
+        },
+        {
+          "id": "2",
+          "action": "wait",
+          "selector": "input[name='q']",
+          "waitTime": 2000
+        },
+        {
+          "id": "3",
+          "action": "type",
+          "selector": "input[name='q']",
+          "value": "AI automation browser"
+        },
+        {
+          "id": "4",
+          "action": "click",
+          "selector": "input[value='Google Search']"
+        },
+        {
+          "id": "5",
+          "action": "wait",
+          "selector": "#search",
+          "waitTime": 3000
+        },
+        {
+          "id": "6",
+          "action": "llmAnalyze",
+          "value": "Extract the titles and URLs of the top 5 search results as a JSON array",
+          "outputVariable": "searchResults"
+        }
+      ]
+    },
+    {
+      "name": "Screenshot and OCR",
+      "description": "Take a screenshot of a page and extract text",
+      "steps": [
+        {
+          "id": "1",
+          "action": "navigate",
+          "value": "https://example.com"
+        },
+        {
+          "id": "2",
+          "action": "wait",
+          "waitTime": 2000
+        },
+        {
+          "id": "3",
+          "action": "screenshot",
+          "outputVariable": "pageScreenshot"
+        },
+        {
+          "id": "4",
+          "action": "ocrExtract",
+          "outputVariable": "extractedText"
+        }
+      ]
+    },
+    {
+      "name": "Form Fill Example",
+      "description": "Navigate to a form and fill it with data",
+      "steps": [
+        {
+          "id": "1",
+          "action": "navigate",
+          "value": "https://www.example.com/form"
+        },
+        {
+          "id": "2",
+          "action": "wait",
+          "selector": "#firstName",
+          "waitTime": 2000
+        },
+        {
+          "id": "3",
+          "action": "type",
+          "selector": "#firstName",
+          "value": "John"
+        },
+        {
+          "id": "4",
+          "action": "type",
+          "selector": "#lastName",
+          "value": "Doe"
+        },
+        {
+          "id": "5",
+          "action": "type",
+          "selector": "#email",
+          "value": "john.doe@example.com"
+        },
+        {
+          "id": "6",
+          "action": "select",
+          "selector": "#country",
+          "value": "US"
+        },
+        {
+          "id": "7",
+          "action": "click",
+          "selector": "button[type='submit']"
+        },
+        {
+          "id": "8",
+          "action": "wait",
+          "waitTime": 2000
+        },
+        {
+          "id": "9",
+          "action": "extract",
+          "selector": ".confirmation-message",
+          "outputVariable": "confirmationMessage"
+        }
+      ]
+    },
+    {
+      "name": "Data Extraction with Custom Script",
+      "description": "Use custom JavaScript to extract data from a page",
+      "steps": [
+        {
+          "id": "1",
+          "action": "navigate",
+          "value": "https://news.ycombinator.com"
+        },
+        {
+          "id": "2",
+          "action": "wait",
+          "selector": ".athing",
+          "waitTime": 2000
+        },
+        {
+          "id": "3",
+          "action": "executeScript",
+          "value": "Array.from(document.querySelectorAll('.athing')).slice(0, 10).map(el => ({ title: el.querySelector('.titleline a')?.textContent, url: el.querySelector('.titleline a')?.href }))",
+          "outputVariable": "stories"
+        }
+      ]
+    },
+    {
+      "name": "Scroll and Capture",
+      "description": "Scroll through a page and take multiple screenshots",
+      "steps": [
+        {
+          "id": "1",
+          "action": "navigate",
+          "value": "https://example.com/long-page"
+        },
+        {
+          "id": "2",
+          "action": "wait",
+          "waitTime": 2000
+        },
+        {
+          "id": "3",
+          "action": "screenshot",
+          "outputVariable": "screenshot1"
+        },
+        {
+          "id": "4",
+          "action": "scroll",
+          "value": "1000"
+        },
+        {
+          "id": "5",
+          "action": "wait",
+          "waitTime": 1000
+        },
+        {
+          "id": "6",
+          "action": "screenshot",
+          "outputVariable": "screenshot2"
+        },
+        {
+          "id": "7",
+          "action": "scroll",
+          "value": "1000"
+        },
+        {
+          "id": "8",
+          "action": "wait",
+          "waitTime": 1000
+        },
+        {
+          "id": "9",
+          "action": "screenshot",
+          "outputVariable": "screenshot3"
+        }
+      ]
+    }
+  ]
+}
